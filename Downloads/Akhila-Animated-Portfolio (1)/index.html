@@ -1,0 +1,2770 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Akhila Reddy — AI/ML Engineer building reliable LLM, RAG, and MLOps systems."
+  />
+
+  <title>Akhila Reddy — AI/ML Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080a0d'/%3E%3Cpath d='M7 24 14 7h4l7 17h-4l-1.4-3.8h-7.3L11 24H7Zm6.7-7.5h4.6L16 10.2l-2.3 6.3Z' fill='%23c8ff4d'/%3E%3C/svg%3E"
+  />
+
+  <style>
+
+    /* =========================================================
+       ROOT
+    ========================================================= */
+
+    :root {
+      --bg: #080a0d;
+      --panel: #101419;
+      --ink: #f3f5ef;
+      --muted: #98a09b;
+      --line: rgba(255, 255, 255, .12);
+
+      --acid: #c8ff4d;
+      --cyan: #65e9ff;
+      --violet: #a993ff;
+
+      --mx: 50vw;
+      --my: 30vh;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Manrope, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       BACKGROUND
+    ========================================================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: -2;
+
+      background:
+        radial-gradient(
+          650px circle at var(--mx) var(--my),
+          rgba(101, 233, 255, .09),
+          transparent 55%
+        ),
+        linear-gradient(
+          rgba(255, 255, 255, .025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, .025) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        auto,
+        56px 56px,
+        56px 56px;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+
+      opacity: .055;
+      z-index: 20;
+      pointer-events: none;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+    .shell {
+      width: min(1200px, calc(100% - 40px));
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mono {
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      font-size: .76rem;
+    }
+
+    .accent {
+      color: var(--acid);
+    }
+
+    section {
+      padding: 120px 0;
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+
+    nav {
+      height: 78px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: relative;
+      z-index: 5;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -.04em;
+      font-size: 1.18rem;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 28px;
+
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .navlinks a {
+      transition: .25s;
+    }
+
+    .navlinks a:hover {
+      color: var(--acid);
+    }
+
+    .status {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .status i {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--acid);
+      box-shadow: 0 0 18px var(--acid);
+
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .35;
+        transform: scale(.7);
+      }
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: calc(100vh - 78px);
+
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+
+      gap: 50px;
+
+      padding: 64px 0 84px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      height: 1px;
+      width: 48px;
+
+      background: var(--acid);
+    }
+
+    h1 {
+      font-size: clamp(4rem, 8.2vw, 8.3rem);
+      line-height: .86;
+      letter-spacing: -.075em;
+
+      margin: 0 0 34px;
+
+      font-weight: 700;
+    }
+
+    .outline {
+      -webkit-text-stroke: 1px rgba(243, 245, 239, .7);
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+
+      color: #bdc3bf;
+
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 100px;
+
+      padding: 14px 22px;
+
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+
+      transition: .25s;
+
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .btn.primary {
+      background: var(--acid);
+      color: #0a0d0a;
+
+      border-color: var(--acid);
+
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--acid);
+    }
+
+
+    /* =========================================================
+       HERO ORB
+    ========================================================= */
+
+    .orb-wrap {
+      display: grid;
+      place-items: center;
+
+      min-height: 460px;
+
+      position: relative;
+    }
+
+    .orb {
+      width: min(33vw, 390px);
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      position: relative;
+
+      box-shadow:
+        0 0 90px rgba(101, 233, 255, .18);
+
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .orb img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+      object-position: center 26%;
+
+      border: 2px solid rgba(200, 255, 77, .7);
+
+      filter:
+        saturate(.88)
+        contrast(1.04);
+
+      box-shadow:
+        inset 0 0 60px #000;
+    }
+
+    .orb::before,
+    .orb::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -12%;
+
+      border:
+        1px solid rgba(200, 255, 77, .35);
+
+      border-radius: 50%;
+
+      transform: rotateX(70deg);
+
+      animation:
+        spin 12s linear infinite;
+
+      z-index: -1;
+    }
+
+    .orb::after {
+      inset: -24%;
+
+      border-color:
+        rgba(101, 233, 255, .22);
+
+      animation-direction: reverse;
+      animation-duration: 17s;
+    }
+
+    @keyframes float {
+      50% {
+        transform:
+          translateY(-18px)
+          rotate(2deg);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform:
+          rotateX(70deg)
+          rotateZ(360deg);
+      }
+    }
+
+
+    /* =========================================================
+       FLOATING METRICS
+    ========================================================= */
+
+    .metric-float {
+      position: absolute;
+
+      background:
+        rgba(9, 12, 15, .78);
+
+      border:
+        1px solid var(--line);
+
+      backdrop-filter: blur(14px);
+
+      padding: 14px 17px;
+
+      border-radius: 12px;
+
+      box-shadow:
+        0 18px 40px #0008;
+    }
+
+    .mf1 {
+      left: 2%;
+      top: 18%;
+    }
+
+    .mf2 {
+      right: -3%;
+      bottom: 18%;
+    }
+
+    .metric-float strong {
+      font-size: 1.45rem;
+      display: block;
+      letter-spacing: -.04em;
+    }
+
+    .metric-float span {
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+
+    /* =========================================================
+       TICKER
+    ========================================================= */
+
+    .ticker {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
+      overflow: hidden;
+
+      padding: 17px 0;
+    }
+
+    .track {
+      white-space: nowrap;
+      display: inline-block;
+
+      animation:
+        marquee 24s linear infinite;
+
+      color: #b9c0bb;
+    }
+
+    .track span {
+      margin: 0 28px;
+    }
+
+    .track b {
+      color: var(--acid);
+      margin-right: 28px;
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* =========================================================
+       SECTION HEADINGS
+    ========================================================= */
+
+    .section-head {
+      display: grid;
+
+      grid-template-columns:
+        .65fr 1.35fr;
+
+      gap: 35px;
+
+      margin-bottom: 60px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+
+      font-size:
+        clamp(2.6rem, 5vw, 5.4rem);
+
+      line-height: .98;
+      letter-spacing: -.06em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+
+      max-width: 560px;
+
+      line-height: 1.75;
+
+      margin: 10px 0 0;
+    }
+
+
+    /* =========================================================
+       PROJECT GRID
+    ========================================================= */
+
+    .projects {
+      display: grid;
+
+      grid-template-columns:
+        repeat(12, minmax(0, 1fr));
+
+      gap: 18px;
+
+      width: 100%;
+    }
+
+    .card {
+      grid-column: span 6;
+
+      min-width: 0;
+      min-height: 390px;
+
+      display: flex;
+      flex-direction: column;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, .055),
+          rgba(255, 255, 255, .018)
+        );
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      transition:
+        transform .18s ease,
+        border-color .3s,
+        box-shadow .3s;
+    }
+
+    .card:hover {
+      border-color:
+        rgba(200, 255, 77, .55);
+
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, .22);
+    }
+
+
+    /* First featured row */
+
+    .card.wide {
+      grid-column: span 8;
+      min-height: 470px;
+    }
+
+    .card.small {
+      grid-column: span 4;
+      min-height: 470px;
+    }
+
+
+    /* Remaining cards */
+
+    .card.compact {
+      grid-column: span 6;
+      min-height: 360px;
+    }
+
+
+    /* Number/category */
+
+    .num {
+      color: var(--muted);
+
+      margin-bottom: 70px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .card.wide .num,
+    .card.small .num {
+      margin-bottom: 90px;
+    }
+
+    .card.compact .num {
+      margin-bottom: 52px;
+    }
+
+
+    /* Project titles */
+
+    .card h3 {
+      font-size:
+        clamp(1.65rem, 2.6vw, 2.65rem);
+
+      line-height: 1.08;
+
+      letter-spacing: -.045em;
+
+      margin:
+        0 0 14px;
+
+      max-width: 560px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .card.small h3 {
+      font-size:
+        clamp(1.7rem, 2.4vw, 2.35rem);
+    }
+
+
+    /* Project descriptions */
+
+    .card p {
+      color: var(--muted);
+
+      line-height: 1.65;
+
+      max-width: 550px;
+
+      margin:
+        0 0 20px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+
+    /* Tags */
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: auto;
+
+      padding-top: 10px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .tag {
+      border:
+        1px solid var(--line);
+
+      padding:
+        7px 10px;
+
+      border-radius: 100px;
+
+      font-size: .72rem;
+
+      color: #cbd1cc;
+
+      background:
+        rgba(8, 10, 13, .2);
+    }
+
+
+    /* =========================================================
+       AGENTIC VISUAL
+    ========================================================= */
+
+    .visual {
+      position: absolute;
+
+      right: -20px;
+      top: 20px;
+
+      width: 210px;
+      height: 155px;
+
+      opacity: .75;
+    }
+
+    .node {
+      position: absolute;
+
+      width: 14px;
+      height: 14px;
+
+      border-radius: 50%;
+
+      background: var(--acid);
+
+      box-shadow:
+        0 0 24px var(--acid);
+    }
+
+    .node:nth-child(2) {
+      left: 12%;
+      top: 50%;
+    }
+
+    .node:nth-child(3) {
+      left: 46%;
+      top: 18%;
+
+      background: var(--cyan);
+    }
+
+    .node:nth-child(4) {
+      left: 78%;
+      top: 63%;
+
+      background: var(--violet);
+    }
+
+    .node:nth-child(5) {
+      left: 45%;
+      top: 80%;
+    }
+
+    .visual svg {
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      inset: 0;
+    }
+
+    .visual path {
+      stroke:
+        rgba(255, 255, 255, .24);
+
+      fill: none;
+
+      stroke-dasharray:
+        5 8;
+
+      animation:
+        dash 8s linear infinite;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -100;
+      }
+    }
+
+
+    /* =========================================================
+       PUBLICATION
+    ========================================================= */
+
+    .publication-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 44px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 24px;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(200, 255, 77, .12),
+          transparent 35%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, .055),
+          rgba(255, 255, 255, .018)
+        );
+    }
+    .publication-card {
+  display: block;
+  cursor: pointer;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.publication-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200,255,77,.55);
+  box-shadow: 0 25px 70px rgba(0,0,0,.28);
+}
+
+    .publication-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 280px;
+      height: 280px;
+
+      right: -120px;
+      top: -130px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(101, 233, 255, .06);
+
+      filter: blur(10px);
+
+      pointer-events: none;
+    }
+
+    .publication-meta {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-bottom: 42px;
+    }
+
+    .publication-status,
+    .publication-journal {
+      padding:
+        8px 12px;
+
+      border-radius:
+        100px;
+
+      font-family:
+        "DM Mono", monospace;
+
+      font-size:
+        .75rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .08em;
+    }
+
+    .publication-status {
+      color: #0a0d0a;
+      background: var(--acid);
+    }
+
+    .publication-journal {
+      color: var(--muted);
+
+      border:
+        1px solid var(--line);
+    }
+
+    .publication-card h3 {
+      max-width: 850px;
+
+      margin:
+        0 0 18px;
+
+      font-size:
+        clamp(2rem, 4vw, 4rem);
+
+      line-height: 1.05;
+
+      letter-spacing:
+        -.055em;
+    }
+
+    .publication-card p {
+      max-width: 760px;
+
+      color: var(--muted);
+
+      font-size: 1.05rem;
+
+      line-height: 1.75;
+
+      margin-bottom: 24px;
+    }
+
+
+    /* =========================================================
+       METRICS
+    ========================================================= */
+
+    .metrics {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      border-top:
+        1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+    .metric {
+      padding:
+        36px 24px;
+
+      border-right:
+        1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric strong {
+      display: block;
+
+      font-size:
+        clamp(2.5rem, 5vw, 4.5rem);
+
+      letter-spacing:
+        -.07em;
+    }
+
+    .metric span {
+      color: var(--muted);
+
+      font-size:
+        .86rem;
+    }
+
+
+    /* =========================================================
+       STACK
+    ========================================================= */
+
+    .stack {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 12px;
+    }
+
+    .stack-col {
+      border-top:
+        1px solid var(--line);
+
+      padding-top: 18px;
+    }
+
+    .stack-col h3 {
+      font-size: .82rem;
+
+      color: var(--acid);
+
+      font-family:
+        "DM Mono", monospace;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .08em;
+    }
+
+    .stack-col p {
+      color: #b7bdb8;
+
+      line-height: 1.9;
+
+      margin-top: 20px;
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns:
+        .9fr 1.1fr;
+
+      gap: 80px;
+
+      align-items: start;
+    }
+
+    .about-grid h2 {
+      font-size:
+        clamp(3rem, 6vw, 6.2rem);
+
+      line-height: .9;
+
+      letter-spacing:
+        -.065em;
+
+      margin: 0;
+    }
+
+    .about-copy {
+      font-size: 1.14rem;
+
+      line-height: 1.85;
+
+      color: #b7bdb9;
+    }
+
+    .timeline {
+      margin-top: 40px;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .row {
+      display: grid;
+
+      grid-template-columns:
+        140px 1fr;
+
+      gap: 22px;
+
+      padding:
+        20px 0;
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+    .row span {
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact {
+      text-align: center;
+
+      padding:
+        150px 0 100px;
+    }
+
+    .contact h2 {
+      font-size:
+        clamp(3.5rem, 8vw, 8rem);
+
+      letter-spacing:
+        -.075em;
+
+      line-height: .9;
+
+      margin:
+        0 auto 30px;
+
+      max-width: 1000px;
+    }
+
+    .contact p {
+      color: var(--muted);
+
+      font-size: 1.1rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      margin-top: 30px;
+    }
+
+    .arrow {
+      display: inline-block;
+
+      transition: .2s;
+    }
+
+    .btn:hover .arrow {
+      transform:
+        translate(4px, -4px);
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      padding:
+        24px 0 38px;
+
+      border-top:
+        1px solid var(--line);
+
+      color:
+        var(--muted);
+
+      font-size:
+        .8rem;
+    }
+
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(34px);
+
+      transition:
+        opacity .75s ease,
+        transform .75s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 1000px) {
+
+      .card.wide {
+        grid-column: span 7;
+      }
+
+      .card.small {
+        grid-column: span 5;
+      }
+
+      .visual {
+        opacity: .45;
+      }
+
+      .about-grid {
+        gap: 50px;
+      }
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 40px;
+      }
+
+      .orb-wrap {
+        min-height: 350px;
+      }
+
+      .orb {
+        width: 270px;
+      }
+
+      h1 {
+        font-size:
+          clamp(3.7rem, 18vw, 6rem);
+      }
+
+      .section-head,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        gap: 20px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .card.wide,
+      .card.small,
+      .card.compact {
+        grid-column: 1 / -1;
+
+        min-height: 360px;
+      }
+
+      .card.wide {
+        min-height: 430px;
+      }
+
+      .card.small {
+        min-height: 360px;
+      }
+
+      .num,
+      .card.wide .num,
+      .card.small .num,
+      .card.compact .num {
+        margin-bottom: 55px;
+      }
+
+      .metrics {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .metric:nth-child(2) {
+        border-right: 0;
+      }
+
+      .metric:nth-child(-n+2) {
+        border-bottom:
+          1px solid var(--line);
+      }
+
+      .stack {
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 35px;
+      }
+
+      .about-grid {
+        gap: 38px;
+      }
+
+      section {
+        padding:
+          90px 0;
+      }
+
+      .shell {
+        width:
+          min(calc(100% - 26px), 1200px);
+      }
+
+      footer {
+        gap: 20px;
+
+        flex-direction:
+          column;
+      }
+
+      .metric-float {
+        transform:
+          scale(.86);
+      }
+
+      .publication-card {
+        padding: 30px;
+      }
+    }
+
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 520px) {
+
+      .status {
+        font-size: .62rem;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .stack {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        border-right: 0;
+        border-bottom:
+          1px solid var(--line);
+      }
+
+      .metric:last-child {
+        border-bottom: 0;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .visual {
+        transform: scale(.75);
+        transform-origin: top right;
+      }
+
+      .card {
+        padding: 25px;
+      }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        scroll-behavior:
+          auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="noise"></div>
+
+
+  <!-- =======================================================
+       NAV
+  ======================================================== -->
+
+  <header class="shell">
+
+    <nav>
+
+      <a
+        class="brand"
+        href="#top"
+      >
+        Akhila Tatipally<span class="accent"></span>
+      </a>
+
+
+      <div class="navlinks">
+
+        <a href="#work">
+          Work
+        </a>
+
+        <a href="#publications">
+          Publication
+        </a>
+
+        <a href="#stack">
+          Stack
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+
+      <div class="status mono">
+        <i></i>
+        Open to work
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main id="top">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <div class="shell hero">
+
+      <div>
+
+        <div class="eyebrow mono">
+          AI / ML Engineer · Troy, Michigan
+        </div>
+
+        <h1>
+          BUILDING<br>
+          <span class="outline">AI THAT</span><br>
+          HOLDS UP.
+        </h1>
+
+        <p class="hero-copy">
+          I build production-minded LLM, RAG, and machine learning
+          systems—grounded in deterministic evaluation, observable
+          pipelines, and measurable outcomes.
+        </p>
+
+
+        <div class="hero-actions">
+
+          <a
+            class="btn primary"
+            href="#work"
+          >
+            Explore my work
+            <span>↓</span>
+          </a>
+
+          <a
+            class="btn"
+            href="#about"
+          >
+            About me
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="orb-wrap">
+
+        <div class="orb">
+
+          <img
+            src="akhila-reddy.jpeg"
+            alt="Akhila Reddy, AI and machine learning engineer"
+          />
+
+        </div>
+
+
+        <div class="metric-float mf1">
+
+          <strong>
+            0.91
+          </strong>
+
+          <span class="mono">
+            Peak ICC
+          </span>
+
+        </div>
+
+
+        <div class="metric-float mf2">
+
+          <strong>
+            18→4%
+          </strong>
+
+          <span class="mono">
+            Hallucinations
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TICKER
+    ====================================================== -->
+
+    <div class="ticker">
+
+      <div class="track mono">
+
+        <span>LLM Systems</span>
+        <b>✦</b>
+
+        <span>Agentic AI</span>
+        <b>✦</b>
+
+        <span>RAG</span>
+        <b>✦</b>
+
+        <span>MLOps</span>
+        <b>✦</b>
+
+        <span>Python</span>
+        <b>✦</b>
+
+        <span>FastAPI</span>
+        <b>✦</b>
+
+        <span>Vertex AI</span>
+        <b>✦</b>
+
+
+        <span>LLM Systems</span>
+        <b>✦</b>
+
+        <span>Agentic AI</span>
+        <b>✦</b>
+
+        <span>RAG</span>
+        <b>✦</b>
+
+        <span>MLOps</span>
+        <b>✦</b>
+
+        <span>Python</span>
+        <b>✦</b>
+
+        <span>FastAPI</span>
+        <b>✦</b>
+
+        <span>Vertex AI</span>
+        <b>✦</b>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SELECTED WORK
+    ====================================================== -->
+
+    <section
+      id="work"
+      class="shell"
+    >
+
+      <div class="section-head reveal">
+
+        <div class="mono accent">
+          01 / Selected work
+        </div>
+
+
+        <div>
+
+          <h2>
+            Systems with<br>
+            proof behind them.
+          </h2>
+
+          <p>
+            Ten applied AI projects spanning LLM evaluation,
+            retrieval, MLOps, computer vision, recommendation
+            systems, accessibility, and edge intelligence.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="projects">
+
+
+        <!-- =================================================
+             PROJECT 01
+        ================================================== -->
+
+        <article class="card wide reveal">
+
+          <div class="num mono">
+            01 · Agentic MLOps
+          </div>
+
+
+          <div class="visual">
+
+            <svg viewBox="0 0 210 155">
+
+              <path
+                d="M27 77 97 28 164 99M27 77l68 47 69-25M97 28l-2 96"
+              />
+
+            </svg>
+
+            <i class="node"></i>
+            <i class="node"></i>
+            <i class="node"></i>
+            <i class="node"></i>
+
+          </div>
+
+
+          <h3>
+            Agentic MLOps Analyst
+          </h3>
+
+
+          <p>
+            An AI copilot that inspects real MLflow runs,
+            compares metrics and hyperparameters, flags missing
+            evidence, and explains experiment changes without
+            inventing results.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              LangChain
+            </span>
+
+            <span class="tag">
+              MLflow
+            </span>
+
+            <span class="tag">
+              FastAPI
+            </span>
+
+            <span class="tag">
+              Streamlit
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 02
+        ================================================== -->
+
+        <a
+          class="card small reveal"
+          href="https://github.com/tvareddy009/SkinScopeAI"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="num mono">
+            02 · Retrieval ↗
+          </div>
+
+
+          <h3>
+            SkinScope RAG
+          </h3>
+
+
+          <p>
+            Hybrid FAISS and BM25 retrieval with grounded
+            citations, reducing hallucinated citations from
+            18% to 4%.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              RAG
+            </span>
+
+            <span class="tag">
+              FAISS
+            </span>
+
+            <span class="tag">
+              BM25
+            </span>
+
+            <span class="tag">
+              OCR
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- =================================================
+             PROJECT 03
+        ================================================== -->
+
+        <article class="card compact reveal">
+
+          <div class="num mono">
+            03 · LLM Research
+          </div>
+
+
+          <h3>
+            AI Narrative Scoring
+          </h3>
+
+
+          <p>
+            Fine-tuned open-source LLMs for structured
+            narrative assessment across more than 1,900
+            samples, reaching 0.81–0.91 agreement with
+            expert raters.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              LLaMA
+            </span>
+
+            <span class="tag">
+              LoRA / PEFT
+            </span>
+
+            <span class="tag">
+              Vertex AI
+            </span>
+
+            <span class="tag">
+              MLflow
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 04
+        ================================================== -->
+
+        <article class="card compact reveal">
+
+          <div class="num mono">
+            04 · Edge AI
+          </div>
+
+
+          <h3>
+            Rainfall Intelligence
+          </h3>
+
+
+          <p>
+            Multimodal edge system combining EfficientNetB0
+            image signals with environmental sensor features
+            through decision-level fusion.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              TensorFlow Lite
+            </span>
+
+            <span class="tag">
+              Raspberry Pi
+            </span>
+
+            <span class="tag">
+              Random Forest
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 05
+        ================================================== -->
+
+        <a
+          class="card compact reveal"
+          href="https://github.com/tvareddy009/women_health_chat_bot"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="num mono">
+            05 · Conversational AI ↗
+          </div>
+
+
+          <h3>
+            Women Health Bot
+          </h3>
+
+
+          <p>
+            Privacy-minded conversational assistant supporting
+            symptom guidance, menstrual tracking, and wellness
+            conversations using LLM-powered natural-language
+            understanding.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              LLM
+            </span>
+
+            <span class="tag">
+              LangChain
+            </span>
+
+            <span class="tag">
+              OpenAI
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- =================================================
+             PROJECT 06
+        ================================================== -->
+
+        <a
+          class="card compact reveal"
+          href="https://github.com/tvareddy009/Cognitive_decline_prediction"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="num mono">
+            06 · Computer Vision ↗
+          </div>
+
+
+          <h3>
+            Cognitive Decline Detection
+          </h3>
+
+
+          <p>
+            Transfer-learning pipeline for MRI-based
+            Alzheimer's detection using optimized image
+            classification and hyperparameter tuning.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              TensorFlow
+            </span>
+
+            <span class="tag">
+              EfficientNetB4
+            </span>
+
+            <span class="tag">
+              Hyperband
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- =================================================
+             PROJECT 07
+        ================================================== -->
+
+        <a
+          class="card compact reveal"
+          href="https://github.com/tvareddy009/CTOS"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="num mono">
+            07 · Object Detection ↗
+          </div>
+
+
+          <h3>
+            Starfish Detection
+          </h3>
+
+
+          <p>
+            DETR-based transformer model for detecting
+            crown-of-thorns starfish in coral-reef imagery.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              DETR
+            </span>
+
+            <span class="tag">
+              PyTorch
+            </span>
+
+            <span class="tag">
+              Transformers
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- =================================================
+             PROJECT 08
+        ================================================== -->
+
+        <article class="card compact reveal">
+
+          <div class="num mono">
+            08 · Accessibility AI
+          </div>
+
+
+          <h3>
+            Audio Image Assistant
+          </h3>
+
+
+          <p>
+            CNN-LSTM image-captioning system that converts
+            visual context into spoken guidance for visually
+            impaired users.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              CNN-LSTM
+            </span>
+
+            <span class="tag">
+              NLP
+            </span>
+
+            <span class="tag">
+              Audio
+            </span>
+
+            <span class="tag">
+              BLEU 0.6
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 09
+        ================================================== -->
+
+        <article class="card compact reveal">
+
+          <div class="num mono">
+            09 · Medical Imaging
+          </div>
+
+
+          <h3>
+            Pneumonia Detection
+          </h3>
+
+
+          <p>
+            Deep-learning image classifier for detecting
+            pneumonia patterns in chest X-rays through a
+            scalable inference workflow.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              CNN
+            </span>
+
+            <span class="tag">
+              Deep Learning
+            </span>
+
+            <span class="tag">
+              Classification
+            </span>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 10
+        ================================================== -->
+
+        <a
+          class="card compact reveal"
+          href="https://github.com/tvareddy009/Tollywood_movie_recommender"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="num mono">
+            10 · Recommendation ↗
+          </div>
+
+
+          <h3>
+            Tollywood Recommender
+          </h3>
+
+
+          <p>
+            Personalized movie discovery using collaborative
+            signals, semantic embeddings, and an interactive
+            recommendation experience.
+          </p>
+
+
+          <div class="tags">
+
+            <span class="tag">
+              Embeddings
+            </span>
+
+            <span class="tag">
+              Mistral 7B
+            </span>
+
+            <span class="tag">
+              Retrieval
+            </span>
+
+          </div>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+<!-- =====================================================
+     PUBLICATION
+====================================================== -->
+
+<section
+  id="publications"
+  class="shell"
+>
+
+  <div class="section-head reveal">
+
+    <div class="mono accent">
+      02 / Publication
+    </div>
+
+    <div>
+
+      <h2>
+        Research translated<br>
+        into evidence.
+      </h2>
+
+      <p>
+        Peer-reviewed research evaluating large language models
+        for reliable structured narrative assessment.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <a
+    class="publication-card reveal"
+    href="https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2026.1762253/full"
+    target="_blank"
+    rel="noreferrer"
+  >
+
+    <div class="publication-meta">
+
+      <span class="publication-status">
+        Published · 2026
+      </span>
+
+      <span class="publication-journal">
+        Frontiers in Digital Health ↗
+      </span>
+
+    </div>
+
+
+    <h3>
+      AI-Assisted Narrative Scoring Using Large Language Models
+    </h3>
+
+
+    <p>
+      Evaluated open-source language models for structured
+      narrative scoring across more than 1,900 narratives.
+      The system achieved agreement of 0.81–0.91 with expert
+      raters while keeping critical prediction errors below 2%.
+    </p>
+
+
+    <div class="tags">
+
+      <span class="tag">
+        Large Language Models
+      </span>
+
+      <span class="tag">
+        Narrative Scoring
+      </span>
+
+      <span class="tag">
+        LoRA / PEFT
+      </span>
+
+      <span class="tag">
+        Model Evaluation
+      </span>
+
+      <span class="tag">
+        ICC 0.81–0.91
+      </span>
+
+    </div>
+
+  </a>
+
+</section>
+
+
+
+    <!-- =====================================================
+         METRICS
+    ====================================================== -->
+
+    <div class="shell metrics reveal">
+
+      <div class="metric">
+
+        <strong>
+          1.9K+
+        </strong>
+
+        <span>
+          Narratives evaluated
+        </span>
+
+      </div>
+
+
+      <div class="metric">
+
+        <strong>
+          0.91
+        </strong>
+
+        <span>
+          Peak expert agreement
+        </span>
+
+      </div>
+
+
+      <div class="metric">
+
+        <strong>
+          −78%
+        </strong>
+
+        <span>
+          Hallucinated citations
+        </span>
+
+      </div>
+
+
+      <div class="metric">
+
+        <strong>
+          &lt;500
+        </strong>
+
+        <span>
+          ms P95 target
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         STACK
+    ====================================================== -->
+
+    <section
+      id="stack"
+      class="shell"
+    >
+
+      <div class="section-head reveal">
+
+        <div class="mono accent">
+          03 / Capabilities
+        </div>
+
+
+        <div>
+
+          <h2>
+            From prototype<br>
+            to production.
+          </h2>
+
+          <p>
+            I connect model development, application engineering,
+            and operations so AI systems remain useful after
+            the demo.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="stack reveal">
+
+
+        <div class="stack-col">
+
+          <h3>
+            Models
+          </h3>
+
+          <p>
+            PyTorch<br>
+            TensorFlow<br>
+            Transformers<br>
+            LoRA / PEFT<br>
+            scikit-learn
+          </p>
+
+        </div>
+
+
+        <div class="stack-col">
+
+          <h3>
+            LLM Systems
+          </h3>
+
+          <p>
+            LangChain<br>
+            LangGraph<br>
+            RAG + Agents<br>
+            Tool calling<br>
+            Evaluations
+          </p>
+
+        </div>
+
+
+        <div class="stack-col">
+
+          <h3>
+            Platforms
+          </h3>
+
+          <p>
+            Vertex AI<br>
+            Databricks<br>
+            MLflow<br>
+            Docker<br>
+            Kubernetes
+          </p>
+
+        </div>
+
+
+        <div class="stack-col">
+
+          <h3>
+            Delivery
+          </h3>
+
+          <p>
+            Python + SQL<br>
+            FastAPI<br>
+            CI / CD<br>
+            Monitoring<br>
+            REST APIs
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section
+      id="about"
+      class="shell"
+    >
+
+      <div class="about-grid reveal">
+
+
+        <div>
+
+          <div
+            class="mono accent"
+            style="margin-bottom:24px"
+          >
+            04 / About
+          </div>
+
+
+          <h2>
+            Curious.<br>
+            Rigorous.<br>
+            Built to ship.
+          </h2>
+
+        </div>
+
+
+
+        <div>
+
+          <p class="about-copy">
+            I’m Akhila, an AI/ML engineer focused on reliable
+            intelligence. My work sits where machine learning
+            research meets real software: retrieval that cites
+            its sources, agents that use tools for facts, and
+            model pipelines that can be measured, monitored,
+            and improved.
+          </p>
+
+
+
+          <div class="timeline">
+
+
+            <div class="row">
+
+              <span class="mono">
+                2025–2026
+              </span>
+
+              <div>
+
+                <strong>
+                  ML Engineer / LLM Researcher
+                </strong>
+
+                <br>
+
+                <span>
+                  University of Michigan–Dearborn
+                </span>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <span class="mono">
+                2023–2024
+              </span>
+
+              <div>
+
+                <strong>
+                  AI Engineer
+                </strong>
+
+                <br>
+
+                <span>
+                  Product Manager Accelerator
+                </span>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <span class="mono">
+                2022–2023
+              </span>
+
+              <div>
+
+                <strong>
+                  Data Scientist
+                </strong>
+
+                <br>
+
+                <span>
+                  Gear Head Motors
+                </span>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section
+      id="contact"
+      class="shell contact reveal"
+    >
+
+      <div class="mono accent">
+        Let’s build something useful
+      </div>
+
+
+      <h2>
+        YOUR NEXT AI SYSTEM STARTS HERE.
+      </h2>
+
+
+      <p>
+        Open to AI/ML engineering opportunities and ambitious
+        applied-AI work.
+      </p>
+
+
+      <div class="socials">
+
+        <a
+          class="btn primary"
+          href="mailto:akhilatatipally2606@gmail.com"
+        >
+          Email me
+          <span class="arrow">
+            ↗
+          </span>
+        </a>
+
+
+        <a
+          class="btn"
+          href="https://www.linkedin.com/in/akhila-tatipally/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+
+
+        <a
+          class="btn"
+          href="https://github.com/akhila-tatipally/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub ↗
+        </a>
+
+<a
+  class="btn"
+  href="./resume.pdf"
+  target="_blank"
+>
+  Résumé ↗
+</a>
+       
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer class="shell">
+
+    <span>
+      © 2026 Akhila Reddy
+    </span>
+
+    <span class="mono">
+      Designed around evidence, not hype.
+    </span>
+
+  </footer>
+
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    const root = document.documentElement;
+
+
+    /* Mouse-following background glow */
+
+    addEventListener(
+      "pointermove",
+      (e) => {
+
+        root.style.setProperty(
+          "--mx",
+          e.clientX + "px"
+        );
+
+        root.style.setProperty(
+          "--my",
+          e.clientY + "px"
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+
+    /* Reveal animation */
+
+    const io =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target
+                  .classList
+                  .add("visible");
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: .12
+        }
+
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(
+        (element) => {
+
+          io.observe(element);
+
+        }
+      );
+
+
+
+    /* Project card tilt */
+
+    if (
+      matchMedia(
+        "(pointer:fine)"
+      ).matches
+    ) {
+
+      document
+        .querySelectorAll(".card")
+        .forEach(
+          (card) => {
+
+            card.addEventListener(
+              "mousemove",
+              (e) => {
+
+                const rect =
+                  card.getBoundingClientRect();
+
+                const x =
+                  (
+                    e.clientX -
+                    rect.left
+                  ) /
+                  rect.width -
+                  .5;
+
+                const y =
+                  (
+                    e.clientY -
+                    rect.top
+                  ) /
+                  rect.height -
+                  .5;
+
+
+                card.style.transform =
+                  `
+                    perspective(900px)
+                    rotateX(${-y * 3}deg)
+                    rotateY(${x * 3}deg)
+                    translateY(-4px)
+                  `;
+
+              }
+            );
+
+
+            card.addEventListener(
+              "mouseleave",
+              () => {
+
+                card.style.transform =
+                  "";
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
